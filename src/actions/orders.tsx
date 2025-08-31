@@ -3,7 +3,7 @@
 import OrderHistoryEmail from "@/email/OrderHistory";
 import { db } from "@/lib/prisma";
 import { Resend } from "resend";
-import z, { promise } from "zod";
+import z from "zod";
 
 const emailSchema = z.string().email();
 const resend = new Resend(process.env.RESEND_API_KEY as string);
@@ -67,7 +67,7 @@ export async function emailOrderHistory(
     subject: "Order History",
     react: <OrderHistoryEmail orders={await Promise.all(orders)} />,
   });
-  
+
   if (data.error) {
     return {
       error: "There was an error sending the email. Please try again later.",

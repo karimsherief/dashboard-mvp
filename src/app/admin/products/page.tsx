@@ -110,7 +110,6 @@ async function ProductsTable() {
                   <DropdownMenuSeparator />
                   <DeleteDropdownItem
                     id={product.id}
-                    isAvailableForPurchase={product.isAvailableForPurchase}
                     disabled={product._count.Order > 0}
                   />
                 </DropdownMenuContent>

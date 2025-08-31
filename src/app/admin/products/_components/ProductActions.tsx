@@ -30,11 +30,9 @@ export function ActiveToggleDropdownItem({
 
 export function DeleteDropdownItem({
   id,
-  isAvailableForPurchase,
   disabled,
 }: {
   id: string;
-  isAvailableForPurchase: boolean;
   disabled: boolean;
 }) {
   const [isPending, startTransition] = useTransition();

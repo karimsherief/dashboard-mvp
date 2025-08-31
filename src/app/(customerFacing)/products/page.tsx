@@ -1,7 +1,6 @@
 import ProductCard, { ProductCardSkeleton } from "@/components/ProductCard";
 import { cache } from "@/lib/cache";
 import { db } from "@/lib/prisma";
-import { get } from "http";
 import { Suspense } from "react";
 
 const getProducts = cache(() => {
@@ -32,7 +31,7 @@ export default async function ProductsPage() {
   );
 }
 
-async function ProdcutsSuspense({ productsFetcher }: any) {
+async function ProdcutsSuspense() {
   const products = await getProducts();
   return products.map((product) => (
     <ProductCard key={product.id} {...product} />

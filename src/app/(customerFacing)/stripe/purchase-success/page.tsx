@@ -5,14 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Stripe from "stripe";
+import { FC } from "react";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
-export default async function SuccessPage({
-  searchParams,
-}: {
+const SuccessPage: FC<{
   searchParams: { payment_intent: string };
-}) {
+}> = async ({ searchParams }) => {
   const paymentIntent = await stripe.paymentIntents.retrieve(
     searchParams.payment_intent
   );
@@ -64,7 +63,7 @@ export default async function SuccessPage({
       </div>
     </div>
   );
-}
+};
 
 async function createDownloadVerification(productId: string) {
   return (
@@ -76,3 +75,5 @@ async function createDownloadVerification(productId: string) {
     })
   ).id;
 }
+
+export default SuccessPage;
